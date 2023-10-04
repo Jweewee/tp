@@ -321,6 +321,30 @@ Extensions:
         Use case ends.
 
 ```
+```
+Use case: UC02 - Filter contacts
+
+Main Success Scenario:
+1. User selectively checks one/multiple categories to filter the contacts for. 
+2. AddressBook filters the contacts list.
+3. AddressBook displays the list of contacts that meet the criteria.
+
+    Use case ends.
+
+Extensions:
+1a.  None of the contacts meet the criteria.
+
+    1a1. AddressBook shows an empty list with a warning message.
+
+        Use case ends.
+
+1b.  User doesn't select any categories to filter for.
+    
+    1b1. AddressBook shows an error message to alert User about the invalid command.
+
+        Use case ends.
+
+```
 
 ### Non-Functional Requirements
 
