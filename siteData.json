@@ -60,7 +60,6 @@
         "product-scope": "Product scope",
         "user-stories": "User stories",
         "use-cases": "Use cases",
-        "searching-for-a-person": "Searching for a person",
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
@@ -147,16 +146,16 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/lianzhixuan.md",
-      "title": "TehOPanas's Project Portfolio Page",
+      "src": "team/songfangyl.md",
+      "title": "songfangyl's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
       "headingKeywords": {}
     },
     {
-      "src": "team/songfangyl.md",
-      "title": "songfangyl's Project Portfolio Page",
+      "src": "team/tehopanas.md",
+      "title": "TehOPanas's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
