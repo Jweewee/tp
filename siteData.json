@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "ezcontact-developer-guide": "EzContact Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -54,9 +54,20 @@
         "tag-feature": "Tag feature",
         "implementation-2": "Implementation",
         "design-considerations": "Design considerations:",
+        "find-feature": "Find feature",
+        "implementation-3": "Implementation",
+        "design-considerations-2": "Design considerations:",
+        "insurance-feature": "Insurance Feature",
+        "implementation-4": "Implementation",
+        "design-considerations-3": "Design Considerations:",
+        "proposed-appointment-feature": "[Proposed] Appointment feature",
+        "implementation-5": "Implementation",
+        "priority-feature": "Priority feature",
+        "implementation-6": "Implementation",
+        "design-consideration": "Design Consideration:",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
         "proposed-implementation": "Proposed Implementation",
-        "design-considerations-2": "Design considerations:",
+        "design-considerations-4": "Design considerations:",
         "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
@@ -119,9 +130,10 @@
         "listing-all-customers-list": "Listing all customers : list",
         "deleting-a-customer-delete": "Deleting a customer : delete",
         "editing-a-customer-edit": "Editing a customer : edit",
-        "finding-persons-find": "Finding persons : find",
+        "finding-customers-find": "Finding customers : find",
         "tagging-a-customer-tag": "Tagging a customer: tag",
         "updating-priority-of-a-customer-pr": "Updating priority of a customer: pr",
+        "adding-a-remark-to-a-customer-remark": "Adding a remark to a customer: remark",
         "exiting-the-program-exit": "Exiting the program : exit",
         "command-summary": "Command summary"
       },
@@ -131,7 +143,7 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "ezcontact": "EzContact"
       },
       "headingKeywords": {}
     },
