@@ -14,8 +14,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all %1$d customer(s)";
 
-    public static final String MESSAGE_USAGE = "Usage: "
-            + COMMAND_WORD + " (no parameters)\n";
+    public static final String MESSAGE_USAGE = "Usage: \n"
+            + COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) {

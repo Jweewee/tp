@@ -80,7 +80,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(processedArguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(processedArguments);
+            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
