@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<VBox fx:id="appointmentCard" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" styleClass="appointment-card-container" minWidth="200" maxWidth="200" VBox.vgrow="ALWAYS">
+    <padding>
+        <Insets top="6" right="10" bottom="10" left="10" />
+    </padding>
+
+    <VBox>
+        <HBox>
+            <padding>
+                <Insets top="5" right="10" bottom="5"/>
+            </padding>
+            <HBox>
+                <padding>
+                    <Insets right="7"/>
+                </padding>
+                <ImageView fx:id="dateIcon" fitWidth="25" fitHeight="25" preserveRatio="true"/>
+            </HBox>
+            <Label fx:id="date" styleClass="cell_small_label" wrapText="true"/>
+        </HBox>
+
+        <HBox>
+            <padding>
+                <Insets top="3" right="10" bottom="5"/>
+            </padding>
+            <HBox>
+                <padding>
+                    <Insets right="7"/>
+                </padding>
+                <ImageView fx:id="timeIcon" fitWidth="25" fitHeight="25" preserveRatio="true"/>
+            </HBox>
+            <Label fx:id="time" styleClass="cell_small_label" wrapText="true"/>
+        </HBox>
+
+        <HBox>
+            <padding>
+                <Insets top="3" right="10" bottom="5"/>
+            </padding>
+            <HBox>
+                <padding>
+                    <Insets right="7"/>
+                </padding>
+                <ImageView fx:id="venueIcon" fitWidth="25" fitHeight="25" preserveRatio="true"/>
+            </HBox>
+            <Label fx:id="venue" styleClass="cell_small_label" wrapText="true"/>
+        </HBox>
+
+        <HBox>
+            <Label fx:id="count" styleClass="cell_small_label" wrapText="true"/>
+        </HBox>
+
+    </VBox>
+</VBox>
+

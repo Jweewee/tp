@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<HBox fx:id="attributeCard" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="5" styleClass="attribute-card" >
+    <padding>
+        <Insets top="5" right="10" bottom="5" left="10" />
+    </padding>
+    <HBox styleClass="icons-container">
+        <ImageView fx:id="imageView" fitWidth="22" fitHeight="22" preserveRatio="true"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" styleClass="attribute-card-label-container" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets left="4"/>
+        </padding>
+        <Label fx:id="body" wrapText="true" styleClass="cell_small_label"/>
+    </HBox>
+</HBox>
