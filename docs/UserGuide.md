@@ -471,7 +471,8 @@ After:
 
 **Description:**
 
-* Deletes a customer's appointment at `<index>` in the displayed customer list.
+* Deletes a customer's appointment at `<index>` in the displayed customer list.\
+* Used when the appointment has been cancelled.
 
 **Caution:**
 
@@ -479,6 +480,53 @@ After:
 * `<index>` should **only be one of** the indices shown in the displayed list
 * Cannot be undone
 
+</box>
+
+**Examples:**
+* `deleteappt 1` deletes the appointment of the first customer in the displayed list, if applicable
+
+<br>
+
+### Marking an appointment: `markappt`
+
+**Format:**
+
+`markappt <index>`
+
+**Description:**
+* Marks the appointment of the customer at `<index>` in the displayed customer list.
+* Increments the customer's completed appointments count by 1.
+* Deletes the current appointment.
+* Use to keep track of the number of completed appointments with the customer
+
+**Caution:**
+* The customer at `<index>` must have a current appointment.
+* This cannot be undone.
+* 
+**Example:**
+* `markappt 1` increments the appointment counter of the first customer in the displayed list.
+
+<br>
+
+### Unmarking an appointment: `unmarkappt`
+
+**Format:**
+
+`unmarkappt <index>`
+
+**Description:**
+
+* Decrements the customer's completed appointments count at `<index>` by 1.
+* Use to reduce the appointment count of customers as needed.
+
+**Caution:**
+* This cannot be undone.
+* The current appointment count must be greater than 0.
+
+*Examples:*
+* `unmarkappt 1` decrements the appointment counter of the first customer in the displayed list by 1.
+
+<br>
 
 
 
@@ -598,20 +646,24 @@ command box.
 
 ## Command summary
 
-| Action        | Format and Examples                                                                                                                                                                                                                              |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/<name> p/<phone number> e/<email> [a/<address>] [pr/<priority>] [t/<tag>]... [i/<insurance>]... [r/<remark>]`          <hr>           `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/tall r/some remarks` |
-| **Delete**    | `delete <index>`                                            <hr>       `delete 3`                                                                                                                                                                |
-| **Edit**      | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] ` <hr> `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                         |
-| **List**      | `list`                                                                      <hr>                                                                                                                                                                 |
-| **Find**      | `find <prefix> [keyword]... [<prefix> [keywords]]...`                    <hr>      `find n/song i/`                                                                                                                                              |
-| **Tag**       | `tag <index> [at/<tag to add>]... [dt/<tag to delete>]...`     <hr>         `tag 1 at/tall dt/short at/male`                                                                                                                                     |
-| **Insurance** | `insurance <index> [ai/<insurance to add>]... [di/<insurance to delete>]...`     <hr>         `insurance 2 ai/AIA insurance di/Great Eastern Insurance`                                                                                          |
-| **Remark**    | `remark <index> [remark]` <hr>   `remark 2 some remarks`                                                                                                                                                                                         |
-| **Priority**  | `priority <index> <priority>`  <hr>  `priority 1 medium`                                                                                                                                                                                         |
-| **Clear**     | `clear`                                                                                                                                                                                                                                          |
-| **Help**      | `help`                                                                                                                                                                                                                                           |
-| **Exit**      | `exit`                                                                                                                                                                                                                                           |
+| Action         | Format and Examples                                                                                                                                                                                                                            |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/<name> p/<phone number> e/<email> [a/<address>] [pr/<priority>] [t/<tag>]... [i/<insurance>]... [r/<remark>]`          <hr>           `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/tall r/some remarks` |
+| **Delete**     | `delete <index>`                                            <hr>       `delete 3`                                                                                                                                                              |
+| **Edit**       | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] ` <hr> `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                       |
+| **List**       | `list`                                                                      <hr>                                                                                                                                                               |
+| **Find**       | `find <prefix> [keyword]... [<prefix> [keywords]]...`                    <hr>      `find n/song i/`                                                                                                                                            |
+| **Tag**        | `tag <index> [at/<tag to add>]... [dt/<tag to delete>]...`     <hr>         `tag 1 at/tall dt/short at/male`                                                                                                                                   |
+| **Insurance**  | `insurance <index> [ai/<insurance to add>]... [di/<insurance to delete>]...`     <hr>         `insurance 2 ai/AIA insurance di/Great Eastern Insurance`                                                                                        |
+| **Remark**     | `remark <index> [remark]` <hr>   `remark 2 some remarks`                                                                                                                                                                                       |
+| **Priority**   | `priority <index> <priority>`  <hr>  `priority 1 medium`                                                                                                                                                                                       |
+| **Addappt**    | `addappt <index> d/<date> [t/<time>] [v/<venue>]` <hr> `addappt 3 d/2025-12-12 t/23:59 v/Starbucks`                                                                                                                                            |
+| **Deleteappt** | `deleteappt <index>` <hr> `deleteappt 1`                                                                                                                                                                                                        |
+| **Markappt**   | `markappt <index>` <hr> `markappt 1`                                                                                                                                                                                                           |
+| **Unmarkappt** | `unmarkappt <index>` <hr> `unmarkappt 1`                                                                                                                                                                                                       |
+| **Clear**      | `clear`                                                                                                                                                                                                                                        |
+| **Help**       | `help`                                                                                                                                                                                                                                         |
+| **Exit**       | `exit`                                                                                                                                                                                                                                         |
 
 
 #### Prefix to full-name prefix translation table
