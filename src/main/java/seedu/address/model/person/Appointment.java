@@ -26,10 +26,10 @@ public class Appointment {
     public static final String NO_APPOINTMENT = "-";
     public static final String NO_TIME = "";
     public static final String NO_VENUE = "";
-    public static final String INVALID_DATE_INPUT = "Date parameter must be YY-MM-DD, "
+    public static final String INVALID_DATE_INPUT = "Date parameter must be YYYY-MM-DD, "
             + "with valid calendar year, month and days";
     public static final String PREVIOUS_DATE_INPUT = "Unable to schedule your appointment "
-            + "on a date/time in the past";
+            + "on a date in the past";
     public static final String INVALID_TIME_INPUT = "Time field must be HH:MM";
     public static final String INVALID_VENUE_INPUT = "Venue field must not be greater than 30 characters";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");

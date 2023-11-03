@@ -15,20 +15,20 @@ Meet EzContact, your go-to solution designed exclusively for insurance agents. N
 policies, and leads has never been easier. EzContact empowers you to manage your contacts, streamline communication,
 and boost your productivity, all from the tips of your fingers.
 
-&emsp;&emsp;EzContact is a desktop application that can help you organize your customers' information and reduces the
+&emsp;&emsp;EzContact is a desktop application that can help you organize your customers' information and reduce the
 hassle of having to remember everything. It is optimized for use via Command Line Interface (CLI), meaning that users would
 have to enter text command to execute them, while still having the benefits of Graphical User Interface (GUI) where users
 can view the information easily through the application.
 
 With EZContact, our users are able to :
 
-*  Seamlessly organize your clients' details, policy information, and communication history.
+*  Seamlessly organize their clients' details, policy information, and communication history.
 *  Stay on top of their leads, and convert potential clients into loyal customers.
 *  Schedule appointments and follow-ups without missing a beat.
 
 &emsp;&emsp;If you are a fast typist, EzContact is the perfect tool for you to keep track of all your customer
 , it is faster than any other traditional GUI-based application available in the market! Remember, Time is Money ! The
-faster you approach your customer, the more deal you seal.
+faster you approach your customer, the more deals you seal.
 
 &emsp;&emsp;If you are interested in EzContact, hop on over to our [Quick Start](#quick-start) to get started and
 embark on your journey of using EzContact.
@@ -57,7 +57,7 @@ Note how the app contains some sample data.<br>![Ui](images/Ui.png)
 Consider the following UI split into three parts:
 ![UiWithDescription](images/UiWithDescription.png)
 As illustrated above, the UI will be split into three sections, we will be providing a name for each section and
-will be using these names to refer to the section specified in the following User Guide.
+using these names to refer to the section specified in the following User Guide.
 
 1. **Command Box:** Box for users to input the command to be executed by EzContact.<br/>
 1. **Result Display Box:** Box that displays the result of executing the entered command.<br/>
@@ -131,18 +131,20 @@ Adds the following [Customer Card](#ui-layout-description) to the [Customer List
 
 ### Listing all customers : `list`
 
-Shows a list of all existing customers in EZContact and the size of the list.
+**Format:** 
 
-Format: `list`
+`list`
+
+**Description**
+* Shows a list of all customers in EZContact and the size of the list.
+* You can return to viewing your full client list after executing a `find` command.
 
 <box type="warning" seamless>
 
-**Caution:** A list command does not take in parameters e.g. `list 1`, `list first`, `list all` will be invalid.
 
-Examples:
+
+**Example**:
 * `list` shows a list of all existing customers and the size of the list.
-
-</box>
 
 <br>
 
@@ -403,7 +405,8 @@ After:
 
 ### Adding a remark to a customer: `remark`
 
-Format: `remark <index> [remark]`
+**Format:**
+ `remark <index> [remark]`
 
 **Description:**
 
@@ -416,15 +419,67 @@ Format: `remark <index> [remark]`
 * `<index>` should be a **positive integer** and **not exceed** the index of the last person in the displayed customer list.
 * `Remark` cannot be longer than 150 characters.
 
+
+
 </box>
 
-Examples:
+**Examples:**
 
 * `remark 1 he likes pizza` Updates the remark of the first customer in the displayed list to `he likes pizza`.
 
 * `remark 2` Removes the remark from the second customer in the displayed list.
 
 <br>
+
+### Adding an appointment to a customer: `addappt`
+
+**Format:**
+`addappt <index> d/<date> [t/<time>] [v/<venue>]`
+
+**Description:**
+
+* Adds an appointment to the customer at `<index>` in the displayed customer list.
+* An appointment can includes a date, time and venue.
+* This allows you to keep track of all your customers' appointment dates all within the same app
+* If you wish to delete the customer's appointment, use the command `deleteappt`
+
+**Caution:**
+
+* The customer must not have a current appointment
+* `<index>` should **only be one of** the indices shown in the displayed list
+* `<date>` must be specified
+* `<date>` must be in YYYY-MM-DD format and not a past date
+* `<time>` format must be in 24h HH:MM format
+* `<venue>` cannot be longer than 30 characters
+
+**Examples:**
+
+* `addappt 1 d/2025-12-12` adds an appointment on 12 Dec 2025 for the first customer in the displayed list
+
+* `addappt 1 d/2025-12-12 t/12:55` adds an appointment on 12 Dec 2025, 1255hrs for the first customer in the displayed list
+
+* `addappt 1 d/2025-12-12 t/12:55 v/Clementi Mall` adds an appointment on 12 Dec 2025, 1255hrs, Clementi Mall for the first customer in the displayed list
+
+### Deleting a customer's appointment: `deleteappt`
+
+**Format:**
+`deleteappt <index>`
+
+**Description:**
+
+* Deletes a customer's appointment at `<index>` in the displayed customer list.
+
+**Caution:**
+
+* The customer must have a current appointment
+* `<index>` should **only be one of** the indices shown in the displayed list
+* Cannot be undone
+
+
+
+
+
+
 
 ### Clearing the customer list : `clear`
 
