@@ -41,7 +41,7 @@ public class Messages {
         assert duplicatePrefixes.length > 0;
 
         Set<String> duplicateFields =
-                Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
+                Stream.of(duplicatePrefixes).map(Prefix::getDisplayMessage).collect(Collectors.toSet());
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
     }
@@ -53,9 +53,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append("\nName: ")
                 .append(person.getName())
-                .append(" Phone: ")
+                .append("    |    Phone: ")
                 .append(person.getPhone())
-                .append(" Email: ")
+                .append("    |    Email: ")
                 .append(person.getEmail())
                 .append("\nAddress: ")
                 .append(person.getAddress())

@@ -84,6 +84,10 @@ using these names to refer to the section specified in the following User Guide.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/<name> p/<phone number>`, `p/12341234 n/John` is also acceptable.
 
+* Prefixes (i.e. n/, p/, e/, etc) are designed to be short, however, we do still provide the functionality to detect 
+full-name prefixes and they can be used interchangeably(e.g. n/ and name/ are interchangeable),
+click [here](#prefix-to-full-name-prefix-translation-table) to see a full table of prefix to full-name prefix relation.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command is `help 123`, it will be interpreted as `help`.
 
@@ -108,7 +112,7 @@ Adds a new customer with the respective details to EzContact.
 * `<phone number>` should be an **8-digit number**(i.e. a Singapore number).
 * `<email>` should be a **valid email address**(i.e. `local-part@domain`).
 * `<address>` should **not be longer than 100 characters**.
-* `<priority>` should **only be one of**: `high`, `medium`, `low`, `-`
+* `<priority>` should **only be one of**: `high`, `medium`, `low`, `-` (all case-insensitive).
 * `<tag>` should be **alphanumeric**, **non-empty** and **not longer than 20 characters(excluding spaces)**.
 * `<insurance>` should be **alphanumeric**, **non-empty** and **not longer than 32 characters**.
 * `<remark>` should **not be longer than 150 characters**.
@@ -365,7 +369,7 @@ After:
 
 **Caution:**
 * `<index>` should **only be one of** the indices shown in the displayed list.
-* `<priority>` should **only be one of：** `high`, `medium`, `low`, `-`.
+* `<priority>` should **only be one of：** `high`, `medium`, `low`, `-` (all case-insensitive).
 
 </box>
 
@@ -608,6 +612,28 @@ command box.
 | **Clear**     | `clear`                                                                                                                                                                                                                                          |
 | **Help**      | `help`                                                                                                                                                                                                                                           |
 | **Exit**      | `exit`                                                                                                                                                                                                                                           |
+
+
+#### Prefix to full-name prefix translation table
+
+**Note that prefixes are not case sensitive**
+| Prefix | Full-name prefix |
+|--------|------------------|
+| n/     | name/            |
+| p/     | phone/           |
+| e/     | email/           |
+|a/|address/|
+|pr/|priority/|
+|t/|tag/|
+|i/|insurance/|
+|r/|remark/|
+|at/|addtag/|
+|dt/|deletetag/|
+|ai/|addinsurance/|
+|di/|deleteinsurance/|
+|d/|date/|
+|t/|time/|
+|v/|venue/|
 
 -----------------------------------------------------------------------------------------------------------------------
 ## Glossary

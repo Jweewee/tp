@@ -1,22 +1,6 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_INSURANCE_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_TAG_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TIME_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_VENUE_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_INSURANCE_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_TAG_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_UPPER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPTY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK_UPPER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_UPPER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,33 +31,6 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Converts all uppercase {@code Prefix} to lowercase {@code Prefix}
-     *
-     * @param argsString arguments that may contain uppercase prefixes
-     * @return processed arguments containing only lowercase prefixes
-     */
-    public static String preprocessArgsString(String argsString) {
-        requireNonNull(argsString);
-
-        Prefix[] uppercasePrefixes = new Prefix[] { PREFIX_NAME_UPPER, PREFIX_PHONE_UPPER,
-            PREFIX_EMAIL_UPPER, PREFIX_PRIORITY_UPPER, PREFIX_TAG_UPPER, PREFIX_REMARK_UPPER,
-            PREFIX_INSURANCE_UPPER, PREFIX_ADDRESS_UPPER, PREFIX_ADD_INSURANCE_UPPER,
-            PREFIX_DELETE_INSURANCE_UPPER, PREFIX_ADD_TAG_UPPER, PREFIX_DELETE_TAG_UPPER, PREFIX_APPOINTMENT_UPPER,
-            PREFIX_APPOINTMENT_TIME_UPPER, PREFIX_APPOINTMENT_VENUE_UPPER};
-
-        String processedArgs = argsString;
-
-        for (Prefix p : uppercasePrefixes) {
-            String upperPrefix = p.getPrefix();
-            String lowerPrefix = upperPrefix.toLowerCase();
-
-            processedArgs = processedArgs.replaceAll(" " + upperPrefix, " " + lowerPrefix);
-        }
-
-        return processedArgs;
-    }
-
-    /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
@@ -92,32 +49,55 @@ public class ArgumentTokenizer {
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
 
-        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
-        while (prefixPosition != -1) {
-            PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
-            positions.add(extendedPrefix);
-            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+        PrefixPosition prefixPosition = findPrefixPosition(argsString, prefix, 0);
+        while (prefixPosition != null) {
+            positions.add(prefixPosition);
+            prefixPosition = findPrefixPosition(argsString, prefix, prefixPosition.getEndPosition());
         }
 
         return positions;
     }
 
     /**
-     * Returns the index of the first occurrence of {@code prefix} in
+     * Returns the {@code PrefixPosition} of the first occurrence of {@code prefix} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
+     * is valid if there is a whitespace before {@code prefix}. Returns null if no
      * such occurrence can be found.
      *
      * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns -1 as there are no valid
+     * {@code fromIndex} = 0, this method returns null as there are no valid
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
      */
-    private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
-        return prefixIndex == -1 ? -1
-                : prefixIndex + 1; // +1 as offset for whitespace
+    private static PrefixPosition findPrefixPosition(String argsString, Prefix prefix, int fromIndex) {
+        String convertedArgsString = argsString.toLowerCase();
+
+        int prefixIndex = convertedArgsString.indexOf(" " + prefix.getPrefix(), fromIndex);
+        int secondaryPrefixIndex = convertedArgsString.indexOf(" " + prefix.getSecondaryPrefix(), fromIndex);
+
+        if (prefixIndex == -1 && secondaryPrefixIndex == -1) {
+            return null;
+        }
+
+        if (prefixIndex == -1) {
+            return new PrefixPosition(prefix, secondaryPrefixIndex + 1,
+                    secondaryPrefixIndex + 1 + prefix.getSecondaryPrefixLength());
+        }
+
+        if (secondaryPrefixIndex == -1) {
+            return new PrefixPosition(prefix, prefixIndex + 1,
+                    prefixIndex + 1 + prefix.getPrefixLength());
+        }
+
+        // both indexes are present
+        if (prefixIndex < secondaryPrefixIndex) {
+            return new PrefixPosition(prefix, prefixIndex + 1,
+                    prefixIndex + 1 + prefix.getPrefixLength());
+        } else {
+            return new PrefixPosition(prefix, secondaryPrefixIndex + 1,
+                    secondaryPrefixIndex + 1 + prefix.getSecondaryPrefixLength());
+        }
     }
 
     /**
@@ -135,11 +115,11 @@ public class ArgumentTokenizer {
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
 
         // Insert a PrefixPosition to represent the preamble
-        PrefixPosition preambleMarker = new PrefixPosition(PREFIX_EMPTY, 0);
+        PrefixPosition preambleMarker = new PrefixPosition(PREFIX_EMPTY, 0, 0);
         prefixPositions.add(0, preambleMarker);
 
         // Add a dummy PrefixPosition to represent the end of the string
-        PrefixPosition endPositionMarker = new PrefixPosition(PREFIX_EMPTY, argsString.length());
+        PrefixPosition endPositionMarker = new PrefixPosition(PREFIX_EMPTY, argsString.length(), argsString.length());
         prefixPositions.add(endPositionMarker);
 
         // Map prefixes to their argument values (if any)
@@ -173,11 +153,13 @@ public class ArgumentTokenizer {
      */
     private static class PrefixPosition {
         private int startPosition;
+        private int endPosition;
         private final Prefix prefix;
 
-        PrefixPosition(Prefix prefix, int startPosition) {
+        PrefixPosition(Prefix prefix, int startPosition, int endPosition) {
             this.prefix = prefix;
             this.startPosition = startPosition;
+            this.endPosition = endPosition;
         }
 
         int getStartPosition() {
@@ -193,7 +175,7 @@ public class ArgumentTokenizer {
          * Returns the end position of the prefix.
          */
         int getEndPosition() {
-            return startPosition + prefix.getPrefixLength();
+            return endPosition;
         }
     }
 
