@@ -45,7 +45,8 @@ embark on your journey of using EzContact.
 2. Download the latest `ezcontact.jar` from [here](https://github.com/AY2324S1-CS2103T-W16-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your EzContact.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Open up command prompt (cmd) and move to the application's directory by using `cd <directory>`.
+5. After reaching the directory, execute the command `java -jar EzContact.jar`. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.<br>![Ui](images/Ui.png)
 5. Type the command in the [Command Box](#ui-layout-description) and press Enter to execute it.
 6. Refer to the [Features](#features) below for details of each command.

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 public class ArgumentTokenizerTest {
 
     private final Prefix unknownPrefix = new Prefix("--u", "--u");
-    private final Prefix pSlash = new Prefix("p/", "p/");
-    private final Prefix dashT = new Prefix("-t", "-t");
-    private final Prefix hatQ = new Prefix("^Q", "^Q");
+    private final Prefix pSlash = new Prefix("p/", "ppp/");
+    private final Prefix dashT = new Prefix("-t", "-ttt");
+    private final Prefix hatQ = new Prefix("^Q", "^QQQ");
 
     @Test
     public void tokenize_emptyArgsString_noValues() {
@@ -71,12 +71,21 @@ public class ArgumentTokenizerTest {
         assertPreamblePresent(argMultimap, "Some preamble string");
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
 
+        argsString = "  Some preamble string ppp/ Argument value ";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
+        assertPreamblePresent(argMultimap, "Some preamble string");
+        assertArgumentPresent(argMultimap, pSlash, "Argument value");
+
         // No preamble
         argsString = " p/   Argument value ";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
         assertPreambleEmpty(argMultimap);
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
 
+        argsString = " ppp/   Argument value ";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
+        assertPreambleEmpty(argMultimap);
+        assertArgumentPresent(argMultimap, pSlash, "Argument value");
     }
 
     @Test
@@ -134,6 +143,16 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
         assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
         assertArgumentAbsent(argMultimap, hatQ);
+    }
+
+    @Test
+    public void tokenize_multipleArgumentsWithSecondaryPrefix_success() {
+        String argsString = "Some Preamble String ppp/value 1 pPp/value2 p/value3 P/value4 PPP/value5 -tdashvalue -ttt";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
+        assertPreamblePresent(argumentMultimap, "Some Preamble String");
+        assertArgumentPresent(argumentMultimap, pSlash, "value 1", "value2", "value3", "value4", "value5");
+        assertArgumentPresent(argumentMultimap, dashT, "dashvalue", "");
+        assertArgumentAbsent(argumentMultimap, hatQ);
     }
 
 
