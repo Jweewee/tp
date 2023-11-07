@@ -85,6 +85,7 @@
         "launch-and-shutdown": "Launch and shutdown",
         "deleting-a-person": "Deleting a person",
         "saving-data": "Saving data",
+        "updating-tags-of-a-customer-2": "Updating tags of a customer",
         "feature-to-show": "Feature to show"
       },
       "headingKeywords": {}
@@ -202,7 +203,7 @@
       "src": "team/yucongkoo.md",
       "title": "Yucongkoo's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-ezcontact": "Project: EzContact"
       },
       "headingKeywords": {}
     },
