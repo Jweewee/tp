@@ -68,10 +68,6 @@
         "remark-feature": "Remark feature",
         "implementation-7": "Implementation",
         "design-consideration-2": "Design Consideration:",
-        "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
-        "proposed-implementation": "Proposed Implementation",
-        "design-considerations-4": "Design considerations:",
-        "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
@@ -86,6 +82,7 @@
         "deleting-a-person": "Deleting a person",
         "saving-data": "Saving data",
         "updating-tags-of-a-customer-2": "Updating tags of a customer",
+        "update-insurance-of-a-customer": "Update insurance of a customer",
         "feature-to-show": "Feature to show"
       },
       "headingKeywords": {}
@@ -136,7 +133,6 @@
         "ui-layout-description": "UI Layout Description",
         "features": "Features",
         "adding-a-customer-add": "Adding a customer: add",
-        "listing-all-customers-list": "Listing all customers : list",
         "deleting-a-customer-delete": "Deleting a customer : delete",
         "editing-a-customer-edit": "Editing a customer : edit",
         "finding-customers-find": "Finding customers : find",
@@ -148,6 +144,7 @@
         "deleting-a-customer-s-appointment-deleteappt": "Deleting a customer's appointment: deleteappt",
         "marking-an-appointment-markappt": "Marking an appointment: markappt",
         "unmarking-an-appointment-unmarkappt": "Unmarking an appointment: unmarkappt",
+        "listing-all-customers-list": "Listing all customers : list",
         "clearing-the-customer-list-clear": "Clearing the customer list : clear",
         "requesting-for-help-help": "Requesting for help : help",
         "exiting-the-program-exit": "Exiting the program : exit",
@@ -187,7 +184,7 @@
       "src": "team/songfangyl.md",
       "title": "songfangyl's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-ezcontact": "Project EzContact"
       },
       "headingKeywords": {}
     },
@@ -195,7 +192,7 @@
       "src": "team/tehopanas.md",
       "title": "TehOPanas's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-ezcontact": "Project EzContact"
       },
       "headingKeywords": {}
     },
